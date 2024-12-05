@@ -6,7 +6,7 @@ object reserva{
     method expandirse() {
         const animalesVigorosos = areas.flatMap({ a => a.animalMasVigoroso()})
         self.quitarAnimales()
-        areas.add( const nuevaArea = new Area(agua=1000, refugios=800, animales=animalesVigorosos ) ) 
+        areas.agregarArea( const nuevaArea = new Area(agua=1000, refugios=800, animales=animalesVigorosos ) ) 
     }
     method quitarAnimales(){
         areas.forEach { a=> a.quitarMasVigoroso()}
