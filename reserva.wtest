@@ -1,0 +1,50 @@
+import reserva.*
+
+describe "Tests de ejemplo" {
+    const ciervo = new Ciervo()
+    const felino = new Felino(peso=70, ferocidad= 50)
+    const averapaz = new Ave(altura=30)
+    const ciervoMontaña = new CiervoDeMontana(nivelAlterta=15)
+    const felinoManchas = new FelinoDeManchas(peso=80, ferocidad= 60, manchas=29)
+    const area1 = new Area(agua=1000, refugio= 215)
+
+    area1.agregarAnimal(ciervo)
+    area1.agregarAnimal(felino)
+    area1.agregarAnimal(averapaz)
+    area1.agregarAnimal(ciervoMontaña)
+    area1.agregarAnimal(felinoManchas)
+
+    const incendio = new Amenaza()
+
+
+    test "Primer ejemplo: Incendio" {
+        reserva.valorLimite(250)
+        area1.sufrirAmenaza(incendio)
+        assert.equals([ciervo, felino, averapaz, felinoManchas],area1.debiles())
+        assert.equals(ciervoMontaña, area1.animalMasVigoroso())
+        assert.equals(900, area1.agua())
+        assert.equals(435, area1.valorEnergeticoDebil())
+    }
+
+
+    test "Segundo ejemplo: Intervención de profesionales"{
+        area1.intervencionDeProfesionales()
+        assert.notThat(area1.esHabitable())
+        assert.equals( 992, area1.agua())
+        assert.equals( 199, area1.refugios())
+    }
+
+    test "Ave recibe amenaza"{
+        averapaz.reaccion()
+        averapaz.reaccion()   
+        assert.notThat(area1.enEquilibrio())
+        assert.that(area1.esHabitable())
+        assert.notThat(area1.todosSatisfechos())
+    }
+
+
+
+
+}
+  
+
